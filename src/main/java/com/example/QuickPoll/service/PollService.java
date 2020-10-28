@@ -1,5 +1,6 @@
 package com.example.QuickPoll.service;
 
+import com.example.QuickPoll.exception.ResourceNotFoundException;
 import com.example.QuickPoll.model.Poll;
 import com.example.QuickPoll.repository.PollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class PollService {
         return pollRepository.findAll();
     }
 
-    public Optional<Poll> findOne(Long id){
+    public Optional<Poll> getPollById(Long id){
         return pollRepository.findById(id);
     }
 
@@ -31,4 +32,5 @@ public class PollService {
     public Poll updatePoll(Long id, Poll poll){
        return pollRepository.save(poll);
     }
+
 }
