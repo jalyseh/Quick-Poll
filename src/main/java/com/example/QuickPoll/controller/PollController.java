@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 
@@ -57,7 +58,7 @@ public class PollController {
 
     //CREATE A POLL
     @RequestMapping(value="/polls", method=RequestMethod.POST)
-    public ResponseEntity<?> createPoll(@RequestBody Poll poll){
+    public ResponseEntity<?> createPoll(@Valid @RequestBody Poll poll){
 
         pollService.createPoll(poll);
 
@@ -68,8 +69,8 @@ public class PollController {
             .path("/{id}")
             .buildAndExpand(poll.getId())
             .toUri();
-
     responseHeaders.setLocation(newPollUri);
+
     return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
