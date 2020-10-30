@@ -14,12 +14,13 @@ public class ComputeResultController {
     @Autowired
     private VoteService voteService;
 
-    @RequestMapping(value="/computeresult/{pollId}", method= RequestMethod.GET)
-    public ResponseEntity<?> computeResult(@PathVariable (value = "pollId") Long pollId) {
+    @RequestMapping(value="/computeresult", method= RequestMethod.GET)
+    public ResponseEntity<?> computeResult(@RequestParam Long pollId) {
 
         VoteResult voteResult = new VoteResult();
 
         Iterable<Vote> allVotes = voteService.findPollByID(pollId); // Algorithm to count votes
+        voteResult = voteService.computeResult(pollId);
         return new ResponseEntity<VoteResult>(voteResult, HttpStatus.OK);
     }
 }

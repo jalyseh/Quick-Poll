@@ -29,7 +29,7 @@ public class PollService {
     public void deleteOne(Long id){
         pollRepository.deleteById(id);
     }
-    public Poll updatePoll(Long id, Poll poll){
+    public Poll updatePoll(Poll poll){
        return pollRepository.save(poll);
     }
 

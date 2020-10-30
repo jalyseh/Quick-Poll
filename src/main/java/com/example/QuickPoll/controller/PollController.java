@@ -88,7 +88,7 @@ public class PollController {
     public ResponseEntity<?> updatePoll(@RequestBody Poll poll, @PathVariable Long id) {
 
         verifyPoll(id);
-        Poll p = pollService.updatePoll(id, poll);
+        Poll p = pollService.updatePoll(poll);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
